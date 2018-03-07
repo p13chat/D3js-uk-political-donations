@@ -76,19 +76,33 @@
         <span class="ml7"><span class="letters">&nbsp;P13chat&nbsp;</span></span>
       </h4>
   
+  
   <script>
-// Wrap every letter in a span
-$('.ml7 .letters').each(function(){
-  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
-});
-ml.timelines["ml7"] = anime.timeline({loop: true})
+  // Wrap every letter in a span
+  $('.ml7 .letters').each(function(){
+    $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+  });
+   
+   ml.timelines["ml7"] = anime.timeline({loop: true}) 
   .add({
     targets: '.ml7 .letter',
-    translateY: ["1.2em", 0],
+    scale: [0.3,1],
+    opacity: [0,1],
     translateZ: 0,
-    duration: 750,
+    easing: "easeOutExpo",
+    duration: 600,
     delay: function(el, i) {
-      return 50 * i+;
+      return 70 * (i+1)
+    }
+  }).add({
+    targets: '.ml7 .line',
+    scaleX: [0,1],
+    opacity: [0.5,1],
+    easing: "easeOutExpo",
+    duration: 700,
+    offset: '-=875',
+    delay: function(el, i, l) {
+      return 80 * (l - i);
     }
   }).add({
     targets: '.ml7',
@@ -96,9 +110,28 @@ ml.timelines["ml7"] = anime.timeline({loop: true})
     duration: 1000,
     easing: "easeOutExpo",
     delay: 1000
-  });
-</script>
-</div> 
+  });    
+  </script>  
+  <style>
+.ml7 {
+  position: relative;
+  font-weight: 900;
+  font-size: 0.95em;
+}
+.ml7 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+.ml7 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+</style>
+  </div>  
   <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
   <!-- <<<<<<<<<<<<<<<<<<<<<<< ...Position #001 ending <<<<<<<<<<<<<<<<<<<<<<< -->
   <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
