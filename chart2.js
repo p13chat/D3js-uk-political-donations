@@ -103,8 +103,8 @@ function start() {
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("donor", function(d) { return d.donor; })
-		.attr("entity", function(d) { return d.entity; })
-		.attr("party", function(d) { return d.party; })
+		.attr("paytype", function(d) { return d.Payment_Type; })
+		.attr("product", function(d) { return d.Product; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
@@ -147,20 +147,20 @@ function amountType() {
 		.start();
 }
 
-function partyGroup() {
+function productGroup() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", parties)
+		.on("tick", products)
 		.start()
 		.colourByParty();
 }
 
-function donorType() {
+function payType() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", entities)
+		.on("tick", paytype)
 		.start();
 }
 
@@ -172,15 +172,15 @@ function fundsType() {
 		.start();
 }
 
-function parties(e) {
-	node.each(moveToParties(e.alpha));
+function products(e) {
+	node.each(moveToProducts(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
 
-function entities(e) {
-	node.each(moveToEnts(e.alpha));
+function paytypes(e) {
+	node.each(moveToPaytype(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
@@ -256,10 +256,10 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToParties(alpha) {
+function moveToProducts(alpha) {
 	return function(d) {
 		var centreX = proCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
+		if (d.entity === 'pro1') {
 			centreX = 1200;
 		} else {
 			centreY = proCentres[d.party].y;
@@ -270,10 +270,10 @@ function moveToParties(alpha) {
 	};
 }
 
-function moveToEnts(alpha) {
+function moveToPaytype(alpha) {
 	return function(d) {
 		var centreY = payCentres[d.entity].y;
-		if (d.entity === 'pub') {
+		if (d.Payment_Type === 'mastercard') {
 			centreX = 1200;
 		} else {
 			centreX = payCentres[d.entity].x;
@@ -346,9 +346,9 @@ function display(data) {
 				value: d.amount,
 				donor: d.donor,
 				party: d.party,
-				partyLabel: d.partyname,
+				product: d.Product,
 				entity: d.entity,
-				entityLabel: d.entityname,
+				paytype: d.Payment_Type,
 				color: d.color,
 				x: Math.random() * w,
 				y: -y
@@ -371,8 +371,8 @@ function mouseover(d, i) {
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
 	var donor = d.donor;
-	var party = d.partyLabel;
-	var entity = d.entityLabel;
+	var product = d.Product;
+	var paytype = d.Payment_Type;
 	var offset = $("svg").offset();
 	
 
