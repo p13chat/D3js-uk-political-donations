@@ -258,11 +258,11 @@ function moveToCentre(alpha) {
 
 function moveToParties(alpha) {
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
+		var centreX = proCentres[d.party].x + 50;
 		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreY = partyCentres[d.party].y;
+			centreY = proCentres[d.party].y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -272,11 +272,11 @@ function moveToParties(alpha) {
 
 function moveToEnts(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
+		var centreY = payCentres[d.entity].y;
 		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreX = entityCentres[d.entity].x;
+			centreX = payCentres[d.entity].x;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -286,13 +286,13 @@ function moveToEnts(alpha) {
 
 function moveToFunds(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
+		var centreY = payCentres[d.entity].y;
+		var centreX = payCentres[d.entity].x;
 		if (d.entity !== 'pub') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = entityCentres[d.entity].x + 60;
+			centreX = payCentres[d.entity].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
