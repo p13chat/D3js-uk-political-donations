@@ -285,15 +285,13 @@ function moveToEnts(alpha) {
 
 function moveToFunds(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.partyname].y;
-		var centreX = entityCentres[d.partyname].x;
-		if (d.partyname !== 'Y') {
-			centreY = 300;
-			centreX = 350;
+		var centreY = entityCentres[d.entity].y;
+		if (d.partyname === 'Y') {
+			centreX = 1200;
 		} else {
-			centreX = entityCentres[d.partyname].x + 60;
-			centreY = 380;
+			centreX = entityCentres[d.partyname].x;
 		}
+
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
