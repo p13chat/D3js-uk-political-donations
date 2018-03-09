@@ -76,7 +76,7 @@ function transition(name) {
 		$("#view-amount-type").fadeOut(250);
 		return donorType();
 	}*/
-	if (name === "group-by-money-source"){
+	if (name === "new-data"){
 		sound.play();
 		//$("#initial-content").fadeOut(250);
 		//$("#value-scale").fadeOut(250);
