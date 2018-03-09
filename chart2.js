@@ -44,7 +44,7 @@ var tooltip = d3.select("#chart")
 
 var comma = d3.format(",.0f");
 
-function transition(name) {
+/*function transition(name) {
 	if (name === "all-donations") {
 		sound.play();
 		$("#initial-content").fadeIn(250);
@@ -75,19 +75,19 @@ function transition(name) {
 		$("#view-donor-type").fadeIn(1000);
 		$("#view-amount-type").fadeOut(250);
 		return donorType();
-	}
-	if (name === "group-by-money-source"){
+	}*/
+	/*if (name === "group-by-money-source"){
 		sound.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeIn(1000);
-		$("#view-amount-type").fadeOut(250);
+		*/$("#view-source-type").fadeIn(1000);
+		//$("#view-amount-type").fadeOut(250);
 		return fundsType();
-	}
+	//}
 	
-	if (name === "group-by-amount"){ 
+	/*if (name === "group-by-amount"){ 
 		sound.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
@@ -97,7 +97,7 @@ function transition(name) {
 		$("#view-amount-type").fadeIn(250);
 		return amountType();
 	}
-}
+}*/
 function start() {
 
 	node = nodeGroup.selectAll("circle")
@@ -132,7 +132,7 @@ function start() {
 }
 
 
-function total() {
+/*function total() {
 
 	force.gravity(0)
 		.friction(0.9)
@@ -165,7 +165,7 @@ function donorType() {
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
 		.on("tick", entities)
 		.start();
-}
+}*/
 
 function fundsType() {
 	force.gravity(0)
@@ -175,7 +175,7 @@ function fundsType() {
 		.start();
 }
 
-function parties(e) {
+/*function parties(e) {
 	node.each(moveToParties(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
@@ -187,7 +187,7 @@ function entities(e) {
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
-}
+}*/
 
 function types(e) {
 	node.each(moveToFunds(e.alpha));
@@ -197,7 +197,7 @@ function types(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
-function all(e) {
+/*function all(e) {
 	node.each(moveToCentre(e.alpha))
 		.each(collide(0.001));
 
@@ -285,7 +285,7 @@ function moveToEnts(alpha) {
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
-}
+}*/
 
 function moveToFunds(alpha) {
 	return function(d) {
