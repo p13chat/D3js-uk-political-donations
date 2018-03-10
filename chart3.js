@@ -16,11 +16,13 @@ var partyCentres = {
   };
 
 var entityCentres = { 
-   	
-		N: {x: w / 1.12, y: h  / 3.2 },
-		Y: {x: w / 1.8, y: h / 2.8},
-		
-};
+    company: {x: w / 3.65, y: h / 2.3},
+		union: {x: w / 3.65, y: h / 1.8},
+		other: {x: w / 1.15, y: h / 1.9},
+		society: {x: w / 1.12, y: h  / 3.2 },
+		pub: {x: w / 1.8, y: h / 2.8},
+		individual: {x: w / 3.65, y: h / 3.3}
+	};
 
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
 
@@ -121,7 +123,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", types)
+			.on("tick", all)
 			.start();
 
 		node.transition()
@@ -260,7 +262,7 @@ function moveToCentre(alpha) {
 function moveToParties(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'Y') {
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
 			centreY = partyCentres[d.party].y;
@@ -274,7 +276,7 @@ function moveToParties(alpha) {
 function moveToEnts(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'Y') {
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
@@ -289,7 +291,7 @@ function moveToFunds(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'Y') {
+		if (d.entity !== 'pub') {
 			centreY = 300;
 			centreX = 350;
 		} else {
@@ -428,6 +430,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7th_Ward_Alderman_Applicants_-_2013.csv", display);
+    return d3.csv("data/7500up.csv", display);
 
 });
