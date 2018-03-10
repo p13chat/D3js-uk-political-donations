@@ -16,10 +16,13 @@ var partyCentres = {
   };
 
 var entityCentres = { 
-    	Y: {x: w / 3.65, y: h / 2.3},
-	N: {x: w / 1.8, y: h / 2.8},
-		
-	};
+    company: {x: w / 3.65, y: h / 2.3},
+		union: {x: w / 3.65, y: h / 1.8},
+		other: {x: w / 1.15, y: h / 1.9},
+		society: {x: w / 1.12, y: h  / 3.2 },
+		pub: {x: w / 1.8, y: h / 2.8},
+		individual: {x: w / 3.65, y: h / 3.3}
+};
 
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
 
@@ -103,7 +106,7 @@ function start() {
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("donor", function(d) { return d.donor; })
-		.attr("partyname", function(d) { return d.partyname; })
+		.attr("entity", function(d) { return d.entity; })
 		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
@@ -120,7 +123,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", types)
+			.on("tick", all)
 			.start();
 
 		node.transition()
@@ -258,11 +261,11 @@ function moveToCentre(alpha) {
 
 function moveToParties(alpha) {
 	return function(d) {
-		var centreX = entityCentres[d.partyname].x + 50;
-		if (d.entity === 'N') {
+		var centreX = partyCentres[d.party].x + 50;
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreY = entityCentres[d.partyname].y;
+			centreY = partyCentres[d.party].y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -272,11 +275,11 @@ function moveToParties(alpha) {
 
 function moveToEnts(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.partyname].y;
-		if (d.entity === 'N') {
+		var centreY = entityCentres[d.entity].y;
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreX = entityCentres[d.partyname].x;
+			centreX = entityCentres[d.entity].x;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -286,13 +289,13 @@ function moveToEnts(alpha) {
 
 function moveToFunds(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.partyname].y;
-		var centreX = entityCentres[d.partyname].x;
-		if (d.entity !== 'N') {
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
+		if (d.entity !== 'pub') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = entityCentres[d.partyname].x + 60;
+			centreX = entityCentres[d.entity].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -347,7 +350,7 @@ function display(data) {
 				donor: d.donor,
 				party: d.party,
 				partyLabel: d.partyname,
-				partyname: d.partyname,
+				entity: d.entity,
 				entityLabel: d.entityname,
 				color: d.color,
 				x: Math.random() * w,
