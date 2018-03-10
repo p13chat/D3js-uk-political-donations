@@ -16,12 +16,9 @@ var partyCentres = {
   };
 
 var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3}
+    	Y: {x: w / 3.65, y: h / 2.3},
+	N: {x: w / 1.8, y: h / 2.8},
+		
 	};
 
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
@@ -106,7 +103,7 @@ function start() {
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("donor", function(d) { return d.donor; })
-		.attr("entity", function(d) { return d.entity; })
+		.attr("partyname", function(d) { return d.partyname; })
 		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
@@ -289,13 +286,13 @@ function moveToEnts(alpha) {
 
 function moveToFunds(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
+		var centreY = entityCentres[d.partyname].y;
+		var centreX = entityCentres[d.partyname].x;
+		if (d.entity !== 'N') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = entityCentres[d.entity].x + 60;
+			centreX = entityCentres[d.partyname].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -350,7 +347,7 @@ function display(data) {
 				donor: d.donor,
 				party: d.party,
 				partyLabel: d.partyname,
-				entity: d.entity,
+				partyname: d.partyname,
 				entityLabel: d.entityname,
 				color: d.color,
 				x: Math.random() * w,
@@ -430,6 +427,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7500up.csv", display);
+    return d3.csv("data/7th_Ward_Alderman_Applicants_-_2013.csv", display);
 
 });
