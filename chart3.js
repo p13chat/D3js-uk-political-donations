@@ -16,12 +16,9 @@ var partyCentres = {
   };
 
 var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3}
+    		Y: {x: w / 3.65, y: h / 2.3},
+		N: {x: w / 3.65, y: h / 1.8},
+		
 	};
 
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
@@ -291,10 +288,11 @@ function moveToFunds(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
+		if (d.entity == 'Y') {
 			centreY = 300;
 			centreX = 350;
-		} else {
+		} 
+		if(d.entity == 'N'){
 			centreX = entityCentres[d.entity].x + 60;
 			centreY = 380;
 		}
