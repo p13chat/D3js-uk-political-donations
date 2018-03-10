@@ -123,7 +123,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", all)
+			.on("tick", types)
 			.start();
 
 		node.transition()
