@@ -119,7 +119,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", types)
+			.on("tick", entities)
 			.start();
 
 		node.transition()
