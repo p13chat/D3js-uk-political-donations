@@ -11,12 +11,12 @@ var GoogleSearch = "http://www.google.com/search?q=";
 
 var partyCentres = { 
     male: { x: w / 3, y: h / 3.3}, 
-    female: {x: w / 3, y: h / 2.3},
+    female: {x: w / 3, y: h / 2.3}
   };
 
 var entityCentres = { 
     	Y: {x: w / 3.65, y: h / 2.3},
-	N: {x: w / 3.65, y: h / 1.8},
+	N: {x: w / 3.65, y: h / 1.8}
 		
 	};
 
@@ -180,7 +180,7 @@ function moveToCentre(alpha) {
 function moveToParties(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'male') {
+		if (d.party === 'male') {
 			centreX = 1200;
 		} else {
 			centreY = partyCentres[d.party].y;
