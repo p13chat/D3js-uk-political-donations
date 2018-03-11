@@ -10,21 +10,17 @@ var sound = new Audio("Page turn sound effect.mp3");
 var GoogleSearch = "http://www.google.com/search?q=";
 
 var partyCentres = { 
-    con: { x: w / 3, y: h / 3.3}, 
-    lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+    male: { x: w / 3, y: h / 3.3}, 
+    female: {x: w / 3, y: h / 2.3},
   };
 
 var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3}
+    	Y: {x: w / 3.65, y: h / 2.3},
+	N: {x: w / 3.65, y: h / 1.8},
+		
 	};
 
-var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
+var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -184,7 +180,7 @@ function moveToCentre(alpha) {
 function moveToParties(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
+		if (d.entity === 'male') {
 			centreX = 1200;
 		} else {
 			centreY = partyCentres[d.party].y;
@@ -198,7 +194,7 @@ function moveToParties(alpha) {
 function moveToEnts(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'pub') {
+		if (d.entity === 'male') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
@@ -213,7 +209,7 @@ function moveToFunds(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
+		if (d.entity !== 'male') {
 			centreY = 300;
 			centreX = 350;
 		} else {
@@ -352,6 +348,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7500up.csv", display);
+    return d3.csv("data/7th_Ward_Alderman_Applicants_-_2013.csv", display);
 
 });
