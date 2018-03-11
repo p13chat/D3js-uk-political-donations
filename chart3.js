@@ -258,7 +258,7 @@ function moveToCentre(alpha) {
 function moveToParties(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
+		if (d.entity === 'Y') {
 			centreX = 1200;
 		} else {
 			centreY = partyCentres[d.party].y;
