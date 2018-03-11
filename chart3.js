@@ -272,7 +272,7 @@ function moveToParties(alpha) {
 function moveToEnts(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'pub') {
+		if (d.entity === 'Y') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
