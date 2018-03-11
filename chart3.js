@@ -62,6 +62,16 @@ function transition(name) {
 		$("#view-amount-type").fadeOut(250);
 		return donorType();
 	}
+	if (name === "group-by-party") {
+		sound.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-party-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
+		return partyGroup();
+	}
 }
 function start() {
 
@@ -88,7 +98,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", entities)
+			.on("tick", parties)
 			.start();
 
 		node.transition()
