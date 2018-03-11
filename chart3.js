@@ -52,8 +52,16 @@ function transition(name) {
 		$("#view-amount-type").fadeOut(250);
 		return fundsType();
 	}
-	
-	
+	if (name === "group-by-donor-type") {
+		sound.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-donor-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
+		return donorType();
+	}
 }
 function start() {
 
@@ -80,7 +88,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", types)
+			.on("tick", entities)
 			.start();
 
 		node.transition()
