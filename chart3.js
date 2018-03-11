@@ -212,7 +212,7 @@ function moveToParties(alpha) {
 function moveToEnts(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'male') {
+		if (d.entity === 'Y') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
@@ -227,7 +227,7 @@ function moveToFunds(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'male') {
+		if (d.entity !== 'Y') {
 			centreY = 300;
 			centreX = 350;
 		} else {
