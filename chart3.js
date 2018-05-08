@@ -15,14 +15,7 @@ var partyCentres = {
     2016: {x: w / 3	, y: h / 1.8}
   };
 
-var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3}
-	};
+
 
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
 
