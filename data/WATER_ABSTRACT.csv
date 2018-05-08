@@ -1,4 +1,4 @@
-﻿"COU","donor","SOURCE","Source","VAR","party","YEA","entity","Unit Code","Unit","PowerCode Code","PowerCode","Reference Period Code","Reference Period","amount","Flag Codes","Flags"
+﻿"COU","donor","SOURCE","Source","entity","entityname","YEA","party","Unit Code","Unit","PowerCode Code","PowerCode","Reference Period Code","Reference Period","amount","Flag Codes","Flags"
 "BEL","Belgium","TOTAL_ABSTRACT","Total freshwater","PUBLIC","Public water supply","2014","2014","M3","Cubic metres","6","Millions",,,720.79999,,
 "CZE","Czech Republic","TOTAL_ABSTRACT","Total freshwater","PUBLIC","Public water supply","2014","2014","M3","Cubic metres","6","Millions",,,602,,
 "CZE","Czech Republic","TOTAL_ABSTRACT","Total freshwater","PUBLIC","Public water supply","2015","2015","M3","Cubic metres","6","Millions",,,612.90002,,
