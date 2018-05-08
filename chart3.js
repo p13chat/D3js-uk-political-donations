@@ -216,7 +216,7 @@ function moveToYears(alpha) {
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
+	}
 }
 
 function moveToVariables(alpha) {
