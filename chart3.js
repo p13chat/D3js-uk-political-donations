@@ -210,9 +210,12 @@ function moveToCentre(alpha) {
 function moveToYears(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		
+		if (d.party === '2014' ) {
+			centreX = 1200;
+		}else{
+			
 			centreY = partyCentres[d.party].y;
-		
+		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
