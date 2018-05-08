@@ -275,13 +275,13 @@ function display(data) {
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 5,
+				radius: radiusScale(d.amount) / 3,
 				value: d.amount,
 				country: d.country,
 				year: d.year,
 				yearLabel: d.yearname,
 				variable: d.variable,
-				variableLabel: d.variable,
+				variableLabel: d.variablename,
 				color: d.color,
 				x: Math.random() * w,
 				y: -y
@@ -326,7 +326,7 @@ function mouseover(d, i) {
 	var infoBox = "<p> Country: <b>" + country + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Year: <b>" + year + "</b></p>"
-								+ "<p> Type of Variable: <b>" + variablename + "</b></p>"
+								+ "<p> Type of Variable: <b>" + variable + "</b></p>"
 								+ "<p> Total Consumption: <b>" + comma(amount) + "</b></p>";
 	
 	
