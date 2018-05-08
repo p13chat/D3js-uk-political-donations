@@ -411,6 +411,13 @@ function mouseover(d, i) {
 	var vmsg = new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
 	voice.speak(vmsg);
 	
+	
+	var newImage = document.createElement("img");
+	newImage.src = imageFile;
+	newImage.setAttribute("height","42");
+	newImage.setAttribute("width","42");
+	document.getElementById("history").appendChild(newImage);
+	 
 	}
 
 function mouseout() {
