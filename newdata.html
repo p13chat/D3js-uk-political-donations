@@ -45,10 +45,16 @@
 <body>
 
     <header role="banner" id="title">
-        <h1 class=zoom >Who's funding the big three?</h1>
+        <h1 class=zoom >Freshwater abstractions at Countries of EU</h1>
     </header>
     <nav role="navigation">
         <ul>
+            <li><a href="#" role="button" class="pure-button switch" id="all-data"> <p class=zoom> All data </p> </a>
+            </li>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-year"> <p class=zoom> Split by Year </p> </a>
+            </li>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-variable"> <p class=zoom> Split by Variable </p> </a>
+            </li>
             <li><a href="index.html" role="button" class="pure-button switch" id="all-donations"> <p class=zoom> Back </p> </a>
             </li>
             
@@ -57,62 +63,96 @@
   
      <div id="annotations">
          
-         <div id="eisagogi">
-             <h2 class=zoom> The New Data of 7th Ward Alderman Applicants 2013 </h2>
-             <p class=zoom> This is a new d3 graph of the new data about The New Data of 7th Ward Alderman Applicants 2013 </p>
+         <div id="initial-content">
+             <h2 class=zoom>Freshwater abstractions at Countries of EU </h2>
+             <p class=zoom> This is a new d3 graph of the new data about The New Data of Freshwater abstractions at Countries of EU </p>
          </div>
-         
-        <!-- Public or private money annotations -->
-        <div id="view-source-type">
-            <div id="public-or-private-money" class="public-private">
-                <h3 class=zoom >Public money vs private cash</h3>
-                <p class=zoom >Despite general public opposition to more taxpayer money being given to political parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.</p>
-                <p class=zoom >The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p>
+         <div id="value-scale">
+            
+            <div id="a" class=zoom >
+                <strong>25k &#8212;</strong>
             </div>
-            <div id="public-or-private-money-split" class="public-private">
-                <div id="private-money" class=zoom>
-                    <h5>Private Donations</h5>
-                    <strong>Total: &#163;89,752,524
-                        </strong>
-                            <p>Proportion of all donations:
-                                <strong>77%</strong>
-                            </p>
-                </div>
-                <div id="public-money" class=zoom>
-                    <h5>Public Funds</h5>
-                    <strong>Total: &#163;26,579,038
-                        </strong>
-                            <p>Proportion of all donations:
-                                <strong>23%</strong>
-                            </p>
-                </div>
-          </div>
+            <div id="b" class=zoom >
+                <strong>50k &#8212;</strong>
+            </div>
+            <div id="c" class=zoom >
+                <strong>100k &#8212;</strong>
+            </div>
+            <div id="d" class=zoom >
+                <strong>500k &#8212;</strong>
+            </div>
+            <div id="e" class=zoom >
+                <strong>1m &#8212;</strong>
+            </div>
         </div>
-        <!-- End public or private money -->
-
-        <div id="view-donor-type">
-            <div id="male" class=zoom>
-                <h5>Male</h5>
+         
+         <div id="view-year-type">
+            <h3>Income for each party from private sources.</h3>
+            <div id="2014">
+                <h5>2014</h5>
+                <strong>Total: &#163;43.7 million
+                    </strong>
+                        <p>Top 50 donors gave:
+                            <strong>&#163;23,329,828</strong>
+                            <br>
+                            <strong>50%</strong>of the total.</p>
+                        <p>Top 10 donors gave:
+                            <strong>&#163;12,877,989</strong>
+                            <br>
+                            <strong>27%</strong>of the total</p>
+            </div>
+            <div id="2015">
+                <h5>2015</h5>
+                <strong>Total: &#163;38.9 million
+                    </strong>
+                        <p>Top 50 donors gave:
+                            <strong>&#163;39,196,684</strong>
+                            <br>
+                            <strong>92%</strong>of the total.</p>
+                        <p>Top 10 donors gave:
+                            <strong>&#163;34,715,877</strong>
+                            <br>
+                            <strong>81%</strong>of the total</p>
+            </div>
+            <div id="2016">
+                <h5>2016</h5>
+                <strong>Total: &#163;7.1 million
+                    </strong>
+                        <p>Top 50 donors gave:
+                            <strong>&#163;6,975,973</strong>
+                            <br>
+                            <strong>63%</strong>of the total.</p>
+                        <p>Top 10 donors gave:
+                            <strong>&#163;4,823,899.71</strong>
+                            <br>
+                            <strong>43%</strong>of the total</p>
+            </div>
+        </div>
+        <div id="view-variable-type">
+            <div id="aquaculture">
+                <h5>Aquaculture</h5>
                 <strong>Total: &#163; 35,191,222
                     </strong>
                         <p>Proportion of all donations:
                             <strong>39%</strong>
                         </p>
             </div>
-            <div id="female" class=zoom>
-                <h5>Female</h5>
+            <div id="public-water-supply">
+                <h5>Public water supply</h5>
                 <strong>Total: &#163; 17,052,129
                     </strong>
                         <p>Proportion of all donations:
                             <strong>19%</strong>
                         </p>
             </div>
-        </div>        
-  
-    
+           
+            
+            
+       
+    </div>
     <div id="chart"></div>
-</div>
-
+    
+    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
