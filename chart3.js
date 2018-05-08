@@ -10,17 +10,21 @@ var sound = new Audio("Page turn sound effect.mp3");
 var GoogleSearch = "http://www.google.com/search?q=";
 
 var partyCentres = { 
-    male: { x: w / 3, y: h / 3.3}, 
-    female: {x: w / 3, y: h / 2.3}
+    con: { x: w / 3, y: h / 3.3}, 
+    lab: {x: w / 3, y: h / 2.3}, 
+    lib: {x: w / 3	, y: h / 1.8}
   };
 
 var entityCentres = { 
-    	Y: {x: w / 3.65, y: h / 2.3},
-	N: {x: w / 3.65, y: h / 1.8}
-		
+    company: {x: w / 3.65, y: h / 2.3},
+		union: {x: w / 3.65, y: h / 1.8},
+		other: {x: w / 1.15, y: h / 1.9},
+		society: {x: w / 1.12, y: h  / 3.2 },
+		pub: {x: w / 1.8, y: h / 2.8},
+		individual: {x: w / 3.65, y: h / 3.3}
 	};
 
-var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00"]);
+var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -41,37 +45,32 @@ var tooltip = d3.select("#chart")
 var comma = d3.format(",.0f");
 
 function transition(name) {
+	if (name === "all-data") {
+		sound.play();
+		$("#initial-content").fadeIn(250);
+		$("#value-scale").fadeIn(1000);
+		$("#view-variable-type").fadeOut(250);
+		$("#view-year-type").fadeOut(250);
+		return total();
+		//location.reload();
+	}
+	if (name === "group-by-year") {
+		sound.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-year-type").fadeIn(1000);
+		$("#view-variable-type").fadeOut(250);
+		return yearGroup();
+	}
+	if (name === "group-by-variable") {
+		sound.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-year-type").fadeOut(250);
+		$("#view-variable-type").fadeIn(1000);
+		return variableType();
+	}
 	
-	if (name === "group-by-money-source"){
-		sound.play();
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeIn(1000);
-		$("#view-amount-type").fadeOut(250);
-		return fundsType();
-	}
-	if (name === "group-by-donor-type") {
-		sound.play();
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-donor-type").fadeIn(1000);
-		$("#view-amount-type").fadeOut(250);
-		return donorType();
-	}
-	if (name === "group-by-party") {
-		sound.play();
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-party-type").fadeIn(1000);
-		$("#view-amount-type").fadeOut(250);
-		return partyGroup();
-	}
 }
 function start() {
 
@@ -98,7 +97,7 @@ function start() {
 		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
-			.on("tick", parties)
+			.on("tick", all)
 			.start();
 
 		node.transition()
@@ -117,49 +116,34 @@ function total() {
 }
 
 
-
-function partyGroup() {
+function yearGroup() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", parties)
+		.on("tick", years)
 		.start()
 		.colourByParty();
 }
 
-function donorType() {
+function variableType() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", entities)
+		.on("tick", variables)
 		.start();
 }
 
-function fundsType() {
-	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", types)
-		.start();
-}
 
-function parties(e) {
-	node.each(moveToParties(e.alpha));
+
+function years(e) {
+	node.each(moveToYears(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
 
-function entities(e) {
-	node.each(moveToEnts(e.alpha));
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
-function types(e) {
-	node.each(moveToFunds(e.alpha));
-
+function variables(e) {
+	node.each(moveToVariables(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
@@ -167,9 +151,37 @@ function types(e) {
 
 
 
+function all(e) {
+	node.each(moveToCentre(e.alpha))
+		.each(collide(0.001));
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
 
 
-
+function moveToAmount(alpha) {
+	return function(d) {
+		var centreX;
+		var centreY;
+		if (d.value <= 500000){
+			centreX = svgCentre.x +70;
+			centreY = svgCentre.y -70;
+		} else if (d.value <= 5000000){
+			centreX = svgCentre.x +450;
+			centreY = svgCentre.y -70;
+		} else if (d.value <= 10000000){
+			centreX = svgCentre.x +70;
+			centreY = svgCentre.y +250;
+		} else {
+			centreX = svgCentre.x +500;
+			centreY = svgCentre.y +250;
+		}
+		
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
 		
 function moveToCentre(alpha) {
 	return function(d) {
@@ -195,10 +207,10 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToParties(alpha) {
+function moveToYears(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.party === 'male') {
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
 			centreY = partyCentres[d.party].y;
@@ -209,10 +221,10 @@ function moveToParties(alpha) {
 	};
 }
 
-function moveToEnts(alpha) {
+function moveToVariables(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'Y') {
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
@@ -223,21 +235,6 @@ function moveToEnts(alpha) {
 	};
 }
 
-function moveToFunds(alpha) {
-	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'Y') {
-			centreY = 300;
-			centreX = 350;
-		} else {
-			centreX = entityCentres[d.entity].x + 60;
-			centreY = 380;
-		}
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
 
 // Collision detection function by m bostock
 function collide(alpha) {
@@ -347,6 +344,13 @@ function mouseover(d, i) {
 	var vmsg = new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
 	voice.speak(vmsg);
 	
+	
+	var newImage = document.createElement("img");
+	newImage.src = imageFile;
+	newImage.setAttribute("height","42");
+	newImage.setAttribute("width","42");
+	document.getElementById("history").appendChild(newImage);
+	 
 	}
 
 function mouseout() {
@@ -366,6 +370,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7th_Ward_Alderman_Applicants_-_2013.csv", display);
+    return d3.csv("data/WATER_ABSTRACT.csv", display);
 
 });
