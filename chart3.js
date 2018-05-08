@@ -10,9 +10,9 @@ var sound = new Audio("Page turn sound effect.mp3");
 var GoogleSearch = "http://www.google.com/search?q=";
 
 var partyCentres = { 
-    con: { x: w / 3, y: h / 3.3}, 
-    lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+    2014: { x: w / 3, y: h / 3.3}, 
+    2015: {x: w / 3, y: h / 2.3}, 
+    2016: {x: w / 3	, y: h / 1.8}
   };
 
 var entityCentres = { 
@@ -210,11 +210,9 @@ function moveToCentre(alpha) {
 function moveToYears(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
-			centreX = 1200;
-		} else {
+		
 			centreY = partyCentres[d.party].y;
-		}
+		
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
