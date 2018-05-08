@@ -326,7 +326,7 @@ function mouseover(d, i) {
 	var infoBox = "<p> Country: <b>" + country + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Year: <b>" + year + "</b></p>"
-								+ "<p> Type of Variable: <b>" + variable + "</b></p>"
+								+ "<p> Type of Variable: <b>" + variablename + "</b></p>"
 								+ "<p> Total Consumption: <b>" + comma(amount) + "</b></p>";
 	
 	
