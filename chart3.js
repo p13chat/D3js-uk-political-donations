@@ -224,12 +224,17 @@ function moveToYears(alpha) {
 
 function moveToVariables(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'pub') {
-			centreX = 1200;
-		} else {
-			centreX = entityCentres[d.entity].x;
-		}
+		var centreY; 
+		     var centreX; 
+                 if (d.entity === 'PUBLIC'){	
+			centreX = 470;
+			centreY = 250;
+
+		} else if(d.entity ==='AQUA'){
+                        centreX = 750;
+			centreY = 250;
+
+}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
