@@ -70,22 +70,20 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		.attr("class", function(d) { return "node " + d.party; })
+		.attr("class", function(d) { return "node " + d.year; })
 		.attr("amount", function(d) { return d.value; })
-		.attr("donor", function(d) { return d.donor; })
-		.attr("entity", function(d) { return d.entity; })
-		.attr("party", function(d) { return d.party; })
+		.attr("country", function(d) { return d.country; })
+		.attr("variable", function(d) { return d.variable; })
+		.attr("year", function(d) { return d.year; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.party); })
+		.style("fill", function(d) { return fill(d.year); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
-	 	.on("click", function(d) { window.open(GoogleSearch + d.donor)});
-		// Alternative title based 'tooltips'
-		// node.append("title")
-		//	.text(function(d) { return d.donor; });
+	 	.on("click", function(d) { window.open(GoogleSearch + d.country)});
+		
 
 		force.gravity(0)
 			.friction(0.75)
@@ -202,12 +200,12 @@ function moveToCentre(alpha) {
 
 function moveToYears(alpha) {
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
+		var centreX = partyCentres[d.year].x + 50;
 		
 			
 		
 			
-			centreY = partyCentres[d.party].y;
+			centreY = partyCentres[d.year].y;
 		
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -219,11 +217,11 @@ function moveToVariables(alpha) {
 	return function(d) {
 		var centreY; 
 		     var centreX; 
-                 if (d.entity === 'PUBLIC'){	
+                 if (d.variable === 'PUBLIC'){	
 			centreX = 470;
 			centreY = 250;
 
-		} else if(d.entity ==='AQUA'){
+		} else if(d.variable ==='AQUA'){
                         centreX = 750;
 			centreY = 250;
 
@@ -279,11 +277,11 @@ function display(data) {
 		var node = {
 				radius: radiusScale(d.amount) / 5,
 				value: d.amount,
-				donor: d.donor,
-				party: d.party,
-				partyLabel: d.partyname,
-				entity: d.entity,
-				entityLabel: d.entityname,
+				country: d.country,
+				year: d.year,
+				yearLabel: d.yearname,
+				variable: d.variable,
+				variableLabel: d.variable,
 				color: d.color,
 				x: Math.random() * w,
 				y: -y
@@ -305,15 +303,15 @@ function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
-	var donor = d.donor;
-	var party = d.partyLabel;
-	var entity = d.entityLabel;
+	var country = d.country;
+	var year = d.yearLabel;
+	var variable = d.variableLabel;
 	var offset = $("svg").offset();
 	
 
 
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + country + ".ico";
 
 	
 	
@@ -325,10 +323,10 @@ function mouseover(d, i) {
 	
 
 	
-	var infoBox = "<p> Country: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	var infoBox = "<p> Country: <b>" + country + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
-	 							+ "<p> Year: <b>" + party + "</b></p>"
-								+ "<p> Type of Variable: <b>" + entity + "</b></p>"
+	 							+ "<p> Year: <b>" + year + "</b></p>"
+								+ "<p> Type of Variable: <b>" + variable + "</b></p>"
 								+ "<p> Total Consumption: <b>" + comma(amount) + "</b></p>";
 	
 	
@@ -340,7 +338,7 @@ function mouseover(d, i) {
 			.style("display","block");
 	
 	var voice = window.speechSynthesis;
-	var vmsg = new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
+	var vmsg = new SpeechSynthesisUtterance(country + " has the consumption of " + amount + " cubic metres");
 	voice.speak(vmsg);
 	
 	
