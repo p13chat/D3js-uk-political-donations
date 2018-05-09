@@ -40,7 +40,7 @@ var comma = d3.format(",.0f");
 function transition(name) {
 	if (name === "all-data") {
 		sound.play();
-		$("#initial-content").fadeIn(700);
+		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
 		$("#view-variable-type").fadeOut(250);
 		$("#view-year-type").fadeOut(250);
