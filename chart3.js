@@ -87,7 +87,7 @@ function start() {
 
 		force.gravity(0)
 			.friction(0.75)
-			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
+			.charge(function(d) { return -Math.pow(d.radius, 2) / 1; })
 			.on("tick", all)
 			.start();
 
@@ -193,8 +193,8 @@ function moveToCentre(alpha) {
 				centreY = svgCentre.y;
 			}
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 0.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 0.2;
 	};
 }
 
