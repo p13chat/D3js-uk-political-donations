@@ -41,12 +41,12 @@ li {
 }
 
 #history{
-    position: fixed;
-    top: 635px;
+    position: absolute;
+    top: 135px;
     right: 10px;
-    width: 100px;
-    height: 520px;
-    border: 2px solid black;
+    width: 90px;
+    height: absolute;
+    border: 2px solid green;
 }
 
 #view-amount-type {
