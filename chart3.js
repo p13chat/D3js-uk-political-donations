@@ -87,7 +87,7 @@ function start() {
 
 		force.gravity(0)
 			.friction(0.75)
-			.charge(function(d) { return -Math.pow(d.radius, 2) / 1; })
+			.charge(function(d) { return -Math.pow(d.radius, 5) / 1; })
 			.on("tick", all)
 			.start();
 
@@ -110,7 +110,7 @@ function total() {
 function yearGroup() {
 	force.gravity(0)
 		.friction(0.8)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.charge(function(d) { return -Math.pow(d.radius, 5.0) / 3; })
 		.on("tick", years)
 		.start()
 		.colourByParty();
@@ -119,7 +119,7 @@ function yearGroup() {
 function variableType() {
 	force.gravity(0)
 		.friction(0.8)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.charge(function(d) { return -Math.pow(d.radius, 5.0) / 3; })
 		.on("tick", variables)
 		.start();
 }
