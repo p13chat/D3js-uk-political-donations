@@ -20,7 +20,7 @@ var partyCentres = {
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
 
 var svgCentre = { 
-    x: w / 7.6, y: h / 2
+    x: w / 3.6, y: h / 2
   };
 
 var svg = d3.select("#chart").append("svg")
@@ -40,7 +40,7 @@ var comma = d3.format(",.0f");
 function transition(name) {
 	if (name === "all-data") {
 		sound.play();
-		$("#initial-content").fadeIn(250);
+		$("#initial-content").fadeIn(700);
 		$("#value-scale").fadeIn(1000);
 		$("#view-variable-type").fadeOut(250);
 		$("#view-year-type").fadeOut(250);
