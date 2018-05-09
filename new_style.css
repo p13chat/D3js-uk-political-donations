@@ -34,12 +34,10 @@ li {
 #initial-content, #view-variable-type {
     left: 650px;
     width: 400px;
+    right: 650px;
 }
 
-#eisagogi {
-    left: 370px;
-    width: 2000px;
-}
+
 
 #view-year-type {
     left: 650px;
