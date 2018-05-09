@@ -59,11 +59,11 @@ li {
 /*  Party view */
 #tessera, #pente, #eksi { padding: 10px; }
 #tessera {
-    background: rgba(255, 255, 0, 0.9);
+    background: rgba(255, 0, 0, 0.9);
     top: 110px;
 }
 #pente {
-    background: rgba(255, 0, 0, 0.9);
+    background: rgba(255, 255, 0, 0.9);
     top: 330px;
 }
 #eksi {
