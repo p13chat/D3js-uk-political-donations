@@ -32,7 +32,7 @@ li {
 
 /* View containers */
 #initial-content, #view-variable-type {
-    right: 650px;
+    left: 650px;
     width: 400px;
     
 }
