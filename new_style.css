@@ -21,17 +21,17 @@ li {
 
 /* 	Information boxes for different chart layouts */
 /* Positioning */
-#initial-content, #eisagogi, #a, #b, #c, #d, #e, #f, #view-party-type, #view-donor-type, #view-source-type, #partyInfo, #conservative, #labour, #libdem, #individual, #Y, #N, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { 
+#initial-content, #eisagogi, #a, #b, #c, #d, #e, #view-year-type, #view-variable-type, #2014, #2015, #2016, #aquaculture, #public-water-supply { 
     position: absolute; 
 }
 
 /* Initial appearance on load */
-#view-party-type, #view-donor-type, #view-source-type, #view-amount-type {
+#view-year-type, #view-variable-type {
     display: none;
 }
 
 /* View containers */
-#initial-content, #view-source-type {
+#initial-content, #view-variable-type {
     left: 650px;
     width: 400px;
 }
@@ -41,7 +41,7 @@ li {
     width: 2000px;
 }
 
-#view-party-type {
+#view-year-type {
     left: 650px;
     width: 272px;
 }
@@ -50,35 +50,6 @@ li {
     height: 100%;
 }
 
-#amountofdonation {
-    left: 500px;
-    top: 150px;
-    position: absolute;
-}
-
-#Upto500000 {
-    left: 200px;
-    top: 200px;
-    position: absolute;
-}
-
-#Upto5000000 {
-    left: 750px;
-    top: 250px;
-    position: absolute;
-}
-
-#Upto10000000 {
-    left: 150px;
-    top: 800px;
-    position: absolute;
-}
-
-#Upto20000000 {
-    left: 750px;
-    top: 700px;
-    position: absolute;
-}
 
 
 /*  Public or private funds view */
@@ -102,36 +73,21 @@ li {
 }
 
 /*  Party view */
-#conservative, #labour, #libdem { padding: 10px; }
-#conservative {
+#2014, #2015, #2016 { padding: 10px; }
+#2014 {
     background: rgba(255, 255, 0, 0.9);
     top: 110px;
 }
-#labour {
+#2015 {
     background: rgba(255, 0, 0, 0.9);
     top: 330px;
 }
-#libdem {
+#2016 {
     background: rgba(0, 0, 255, 0.9);
     top: 550px;
 }
 
 /*	Donor type layout */
-#view-donor-type {
-    height: 100%;
-    left: 500px;
-    width: 370px;
-    
-}
-
-#Y {
-    top: 390px;
-}
-#N {
-    top: 660px;
-}
-
-}
 
 /* Value scale */
 
@@ -145,7 +101,7 @@ li {
 #c { top: 535px;}
 #d { top: 485px;}
 #e { top: 435px;}
-#f { top: 648px; left: 575px; }
+
 
 /* End of view */
 
