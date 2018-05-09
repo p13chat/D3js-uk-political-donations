@@ -21,7 +21,7 @@ li {
 
 /* 	Information boxes for different chart layouts */
 /* Positioning */
-#initial-content, #a, #b, #c, #d, #e, #view-year-type, #view-variable-type, #tessera, #pente, #eksi, #aquaculture, #public-water-supply { 
+#initial-content, #a, #b, #c, #d, #e, #view-year-type, #view-variable-type, #tessera, #pente, #eksi  { 
     position: absolute; 
 }
 
@@ -42,6 +42,16 @@ li {
 #view-year-type {
     left: 650px;
     width: 272px;
+}
+
+#aquaculture{
+    left: 150px;
+    width: 400px;
+}
+
+#public-water-supply{
+    left: 400px;
+    width: 400px;
 }
 
 
