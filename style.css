@@ -151,6 +151,15 @@ li {
 #e { top: 435px;}
 #f { top: 648px; left: 575px; }
 
+#history{
+    position: fixed;
+    top: 635px;
+    right: 10px;
+    width: 100px;
+    height: 520px;
+    border: 2px solid black;
+}
+
 /* End of view */
 
 circle {
