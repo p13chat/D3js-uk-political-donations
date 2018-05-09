@@ -44,31 +44,7 @@ li {
     width: 272px;
 }
 
-#view-amount-type {
-    height: 100%;
-}
 
-
-
-/*  Public or private funds view */
-
-#public-or-private-money {
-    max-width: 300px;
-}
-#public-or-private-money-split {
-    top: 550px;
-    left: -600px;
-    text-align: center;   
-}
-#private-money, #public-money {
-    width: 200px;
-}
-#private-money {
-    left: 200px;
-}
-#public-money {
-    left: 610px;
-}
 
 /*  Party view */
 #2014, #2015, #2016 { padding: 10px; }
