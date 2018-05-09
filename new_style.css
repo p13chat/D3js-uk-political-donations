@@ -21,7 +21,7 @@ li {
 
 /* 	Information boxes for different chart layouts */
 /* Positioning */
-#initial-content, #a, #b, #c, #d, #e, #view-year-type, #view-variable-type, #2014, #2015, #2016, #aquaculture, #public-water-supply { 
+#initial-content, #a, #b, #c, #d, #e, #view-year-type, #view-variable-type, #tessera, #pente, #eksi, #aquaculture, #public-water-supply { 
     position: absolute; 
 }
 
@@ -47,16 +47,16 @@ li {
 
 
 /*  Party view */
-#2014, #2015, #2016 { padding: 10px; }
-#2014 {
+#tessera, #pente, #eksi { padding: 10px; }
+#tessera {
     background: rgba(255, 255, 0, 0.9);
     top: 110px;
 }
-#2015 {
+#pente {
     background: rgba(255, 0, 0, 0.9);
     top: 330px;
 }
-#2016 {
+#eksi {
     background: rgba(0, 0, 255, 0.9);
     top: 550px;
 }
